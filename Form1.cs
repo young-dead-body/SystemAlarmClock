@@ -12,15 +12,27 @@ namespace SystemAlarmClock
 {
     public partial class Form1 : Form
     {
-        public Form1()
+		public Form1()
         {
             InitializeComponent();
         }
 
 		int a = -1;
-		// для красивого выделения LISTBOX (4 строчки)
-		private void listBox1_MouseClick(object sender, EventArgs e)
-		{
+		
+        private void button3_Click(object sender, EventArgs e)
+        {
+			Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+			Form2 form2 = new Form2();
+			form2.Owner = this;
+			form2.Show();
+		}
+
+		private void listBox1_MouseClick(object sender, MouseEventArgs e)
+        {
 			if (a != -1)
 			{
 				listBox1.ClearSelected();
@@ -63,21 +75,20 @@ namespace SystemAlarmClock
 					listBox1.SetSelected(a - 1, true);
 					listBox1.SetSelected(a, true);
 				}
+
 				button2.Visible = true;
 				button4.Visible = true;
 			}
 		}
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-			Close();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-			Form2 form2 = new Form2();
-			form2.Owner = this;
-			form2.Show();
+		public void recordList(string str)
+		{
+			listBox1.Items.Add(str);
 		}
-    }
+
+		public void recordList(DateTime dt)
+		{
+			listBox1.Items.Add(dt);
+		}
+	}
 }
