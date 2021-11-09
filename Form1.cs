@@ -13,6 +13,7 @@ namespace SystemAlarmClock
 {
     public partial class Form1 : Form
     {
+		string FileName = "DB.txt";
 		public Form1()
         {
             InitializeComponent();
@@ -109,5 +110,49 @@ namespace SystemAlarmClock
         {
 
         }
-    }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+			StreamReader reader = new StreamReader(FileName);
+			while (!reader.EndOfStream)
+			{
+				listBox1.Items.Add(reader.ReadLine());
+			}
+			reader.Close();
+		}
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+			deleteEvent(a);
+			rewriteBDEvent(FileName);
+		}
+
+		public void deleteEvent(int a)
+		{
+			if (a % 3 == 0)
+			{
+				listBox1.ClearSelected();
+				listBox1.Items.RemoveAt(a);
+				listBox1.Items.RemoveAt(a);
+				listBox1.Items.RemoveAt(a);
+			}
+			if (a % 3 == 1)
+			{
+				listBox1.ClearSelected();
+				listBox1.Items.RemoveAt(a - 1);
+				listBox1.Items.RemoveAt(a - 1);
+				listBox1.Items.RemoveAt(a - 1);
+			}
+			if (a % 3 == 2)
+			{
+				listBox1.ClearSelected();
+				listBox1.Items.RemoveAt(a - 2);
+				listBox1.Items.RemoveAt(a - 2);
+				listBox1.Items.RemoveAt(a - 2);
+			}
+			button2.Visible = false;
+			button4.Visible = false;
+			a = -1;
+		}
+	}
 }
