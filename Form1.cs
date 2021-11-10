@@ -26,7 +26,12 @@ namespace SystemAlarmClock
 			Close();
         }
 
- 
+		private void button4_Click(object sender, EventArgs e)
+		{
+			Form3 form3 = new Form3();
+			form3.Owner = this;
+			form3.Show();
+		}
 
 		private void listBox1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -64,18 +69,73 @@ namespace SystemAlarmClock
 					listBox1.SetSelected(a, true);
 					//listBox1.SetSelected(a + 1, true);
 				}
-				//if (a % 4 == 3)
-				//{
-				//	listBox1.ClearSelected();
-				//	listBox1.SetSelected(a - 3, true);
-				//	listBox1.SetSelected(a - 2, true);
-				//	listBox1.SetSelected(a - 1, true);
-				//	listBox1.SetSelected(a, true);
-				//}
 
 				button2.Visible = true;
 				button4.Visible = true;
 			}
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			Form2 form2 = new Form2();
+			form2.Owner = this;
+			form2.Show();
+		}
+
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+
+			DateTime systemTime = DateTime.Now;
+			for (int i = 0; i < (listBox1.Items.Count + 1) / 3; i++)
+			{
+				DateTime date = DateTime.Parse(Convert.ToString(listBox1.Items[2 + i * 3])); // это время до события
+				if (date.Year >= systemTime.Year)
+					if (date.Month >= systemTime.Month)
+						if (date.Day >= systemTime.Day)
+							if (date.Hour >= systemTime.Hour)
+								if (date.Minute >= systemTime.Minute)
+								{
+									MessageBox.Show($"Вот и пришло завершение события \n " +
+										$"{Convert.ToString(listBox1.Items[2 + i * 3])}", "ВОУ ВОУ");
+									deleteEvent(2 + i * 3);
+									rewriteBDEvent(FileName);
+								}
+			}
+
+
+			for (int i = 0; i < (listBox1.Items.Count + 1) / 3; i++)
+			{
+				DateTime date = DateTime.Parse(Convert.ToString(listBox1.Items[1 + i * 3])); // это время события
+				if (date.Year == systemTime.Year)
+					if (date.Month == systemTime.Month)
+						if (date.Day == systemTime.Day)
+							if (date.Hour == systemTime.Hour)
+								if (date.Minute == systemTime.Minute) 
+								{
+									MessageBox.Show("Вот и пришло время события \n " +
+										$"{Convert.ToString(listBox1.Items[1 + i * 3])}", "ВОУ ВОУ");
+								}
+			}
+
+			
+
+		}
+
+		private void Form1_Load(object sender, EventArgs e)
+		{
+			timer1.Enabled = true;
+			StreamReader reader = new StreamReader(FileName);
+			while (!reader.EndOfStream)
+			{
+				listBox1.Items.Add(reader.ReadLine());
+			}
+			reader.Close();
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			deleteEvent(a);
+			rewriteBDEvent(FileName);
 		}
 
 		public void recordList(string str)
@@ -97,53 +157,25 @@ namespace SystemAlarmClock
 				writer.WriteLine(listBox1.Items[i]);
 			}
 			writer.Close();
-		}
+		}   
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-			Form2 form2 = new Form2();
-			form2.Owner = this;
-			form2.Show();
-		}
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-			StreamReader reader = new StreamReader(FileName);
-			while (!reader.EndOfStream)
-			{
-				listBox1.Items.Add(reader.ReadLine());
-			}
-			reader.Close();
-		}
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-			deleteEvent(a);
-			rewriteBDEvent(FileName);
-		}
-
-		public void deleteEvent(int a)
+		public void deleteEvent(int count)
 		{
-			if (a % 3 == 0)
+			if (count % 3 == 0)
 			{
 				listBox1.ClearSelected();
 				listBox1.Items.RemoveAt(a);
 				listBox1.Items.RemoveAt(a);
 				listBox1.Items.RemoveAt(a);
 			}
-			if (a % 3 == 1)
+			if (count % 3 == 1)
 			{
 				listBox1.ClearSelected();
 				listBox1.Items.RemoveAt(a - 1);
 				listBox1.Items.RemoveAt(a - 1);
 				listBox1.Items.RemoveAt(a - 1);
 			}
-			if (a % 3 == 2)
+			if (count % 3 == 2)
 			{
 				listBox1.ClearSelected();
 				listBox1.Items.RemoveAt(a - 2);
@@ -154,5 +186,36 @@ namespace SystemAlarmClock
 			button4.Visible = false;
 			a = -1;
 		}
-	}
+
+		public void rewriteEvent(String str1, DateTime dateTime1, String str2)
+		{
+            if (a % 3 == 0)
+            {
+                listBox1.ClearSelected();
+                listBox1.Items[a] = str1;
+                listBox1.Items[a + 1] = dateTime1;
+                listBox1.Items[a + 2] = str2;
+            }
+            else if (a % 3 == 1)
+            {
+                listBox1.ClearSelected();
+                listBox1.Items[a - 1] = str1;
+                listBox1.Items[a] = dateTime1;
+                listBox1.Items[a + 1] = str2;
+            }
+            else if (a % 3 == 2)
+            {
+                listBox1.ClearSelected();
+                listBox1.Items[a - 2] = str1;
+                listBox1.Items[a - 1] = dateTime1;
+                listBox1.Items[a] = str2;
+            }
+            button2.Visible = false;
+            button4.Visible = false;
+            button1.Enabled = true;
+            a = -1;
+            rewriteBDEvent(FileName);
+        }
+
+    }
 }

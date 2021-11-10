@@ -86,10 +86,7 @@ namespace SystemAlarmClock
 
                 if (this.Owner is Form1 owner)
                 {
-                    owner.recordList(reminder);
-                    owner.recordList(eventDateTime);
-                    owner.recordList(reminderDateTime);
-                    owner.rewriteBDEvent(FileName);
+                    owner.rewriteEvent(reminder, eventDateTime, reminderDateTime);
                 }
 
                 Close();
