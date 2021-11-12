@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace SystemAlarmClock
 {
-    public partial class Form3 : Form
+    public partial class fmAddEvent : Form
     {
-        public Form3()
+
+
+        public fmAddEvent()
         {
             InitializeComponent();
         }
@@ -28,7 +30,7 @@ namespace SystemAlarmClock
             {
                 MessageBox.Show("Ошибка ввода данных", "Ошибка!!!", MessageBoxButtons.OK);
             }
-            else
+            else 
             {
                 reminder = richTextBox1.Text;
                 eventDateTime = dateTimePicker1.Value;
@@ -44,7 +46,7 @@ namespace SystemAlarmClock
                         d = 30 + (d - 1);
                         m--;
                     }
-                    else
+                    else 
                     {
                         d--;
                     }
@@ -52,7 +54,7 @@ namespace SystemAlarmClock
                                                             $"{eventDateTime.Hour}:{eventDateTime.Minute}";
                     //==================================
                 }
-                else
+                else 
                 {
                     int d = (int)eventDateTime.Day;
                     int m = (int)eventDateTime.Month;
@@ -65,7 +67,7 @@ namespace SystemAlarmClock
                         d = d + (d - cd);
                         m--;
                     }
-                    else
+                    else 
                     {
                         d = d - cd;
                     }
@@ -84,9 +86,12 @@ namespace SystemAlarmClock
                 }
 
 
-                if (this.Owner is Form1 owner)
+                if (this.Owner is MainForm owner)
                 {
-                    owner.rewriteEvent(reminder, eventDateTime, reminderDateTime);
+                    owner.recordList(reminder);
+                    owner.recordList(eventDateTime);
+                    owner.recordList(reminderDateTime);
+                    owner.rewriteBDEvent(FileName);
                 }
 
                 Close();
@@ -94,7 +99,9 @@ namespace SystemAlarmClock
 
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+
+
+        private void checkBox1_Click(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
             {
@@ -120,37 +127,6 @@ namespace SystemAlarmClock
             button2.Visible = true;
         }
 
-        private void rewriteEvent() 
-        {
-            //if (a % 4 == 0)
-            //{
-            //    listBox1.ClearSelected();
-            //    listBox1.Items[a] = richTextBox1.Text + importance;
-            //    listBox1.Items[a + 1] = richTextBox2.Text;
-            //    listBox1.Items[a + 2] = words[0];
-            //    listBox1.Items[a + 3] = words[1];
-            //}
-            //else if (a % 4 == 1)
-            //{
-            //    listBox1.ClearSelected();
-            //    listBox1.Items[a - 1] = richTextBox1.Text + importance;
-            //    listBox1.Items[a] = richTextBox2.Text;
-            //    listBox1.Items[a + 1] = words[0];
-            //    listBox1.Items[a + 2] = words[1];
-            //}
-            //else if (a % 4 == 2)
-            //{
-            //    listBox1.ClearSelected();
-            //    listBox1.Items[a - 2] = richTextBox1.Text + importance;
-            //    listBox1.Items[a - 1] = richTextBox2.Text;
-            //    listBox1.Items[a] = words[0];
-            //    listBox1.Items[a + 1] = words[1];
-            //}
-            //button2.Visible = false;
-            //button4.Visible = false;
-            //button1.Enabled = true;
-            //a = -1;
-            //rewriteBDEvent(FileName);
-        }
+
     }
 }

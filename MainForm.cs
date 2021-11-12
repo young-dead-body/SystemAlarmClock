@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace SystemAlarmClock
 {
-	public partial class Form1 : Form
+	public partial class MainForm : Form
 	{
 		string FileName = "DB.txt";
-		public Form1()
+		public MainForm()
 		{
 			InitializeComponent();
 		}
@@ -28,7 +28,7 @@ namespace SystemAlarmClock
 
 		private void button4_Click(object sender, EventArgs e)
 		{
-			Form3 form3 = new Form3();
+			fmDeleteEvent form3 = new fmDeleteEvent();
 			form3.Owner = this;
 			form3.Show();
 		}
@@ -77,7 +77,7 @@ namespace SystemAlarmClock
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			Form2 form2 = new Form2();
+			fmAddEvent form2 = new fmAddEvent();
 			form2.Owner = this;
 			form2.Show();
 		}
@@ -98,27 +98,18 @@ namespace SystemAlarmClock
 									if (date.Hour == systemTime.Hour)
 									{
 										if (date.Minute <= systemTime.Minute)
-										{
-											MessageBox.Show($"Вот и пришло завершение события \n " +
-												$"{Convert.ToString(listBox1.Items[1 + i * 3])}", "ВОУ ВОУ");
-											deleteEvent(2 + i * 3);
-											rewriteBDEvent(FileName);
-										}
-									}
+                                        {
+                                            deletingEvent(i);
+                                        }
+                                    }
 									else 
 									{
-										MessageBox.Show($"Вот и пришло завершение события \n " +
-												$"{Convert.ToString(listBox1.Items[1 + i * 3])}", "ВОУ ВОУ");
-										deleteEvent(2 + i * 3);
-										rewriteBDEvent(FileName);
+										deletingEvent(i);
 									}
 							}
 							else 
 							{
-								MessageBox.Show($"Вот и пришло завершение события \n " +
-											$"{Convert.ToString(listBox1.Items[1 + i * 3])}", "ВОУ ВОУ");
-								deleteEvent(2 + i * 3);
-								rewriteBDEvent(FileName);
+								deletingEvent(i);
 							}
 			}
 
@@ -139,7 +130,21 @@ namespace SystemAlarmClock
 
 
 		}
-		private void Form1_Load(object sender, EventArgs e)
+
+        private void deletingEvent(int i)
+        {
+            if (MessageBox.Show($"Вот и пришло завершение события \n " +
+							$"Назавение события: {Convert.ToString(listBox1.Items[0 + i * 3])} \n"+
+							$"Время события: {Convert.ToString(listBox1.Items[1 + i * 3])}", 
+							"Напоминание о завершении события", 
+							MessageBoxButtons.YesNo) == DialogResult.Yes)
+			{
+				deleteEvent(2 + i * 3);
+				rewriteBDEvent(FileName);
+			}
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
 		{
 			timer1.Enabled = true;
 			StreamReader reader = new StreamReader(FileName);
