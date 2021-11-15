@@ -34,7 +34,7 @@ namespace SystemAlarmClock
             this.button3 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buCreateEvent = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -73,17 +73,17 @@ namespace SystemAlarmClock
             this.listBox1.TabIndex = 39;
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             // 
-            // button1
+            // buCreateEvent
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(389, 14);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(246, 49);
-            this.button1.TabIndex = 40;
-            this.button1.Text = "Добавить событие";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buCreateEvent.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buCreateEvent.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buCreateEvent.Location = new System.Drawing.Point(389, 14);
+            this.buCreateEvent.Name = "buCreateEvent";
+            this.buCreateEvent.Size = new System.Drawing.Size(246, 49);
+            this.buCreateEvent.TabIndex = 40;
+            this.buCreateEvent.Text = "Добавить событие";
+            this.buCreateEvent.UseVisualStyleBackColor = false;
+            this.buCreateEvent.Click += new System.EventHandler(this.buCreateEvent_Click);
             // 
             // button2
             // 
@@ -119,7 +119,7 @@ namespace SystemAlarmClock
             this.ClientSize = new System.Drawing.Size(650, 436);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buCreateEvent);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -135,7 +135,7 @@ namespace SystemAlarmClock
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buCreateEvent;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
     }

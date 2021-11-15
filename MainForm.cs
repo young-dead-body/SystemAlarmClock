@@ -28,11 +28,12 @@ namespace SystemAlarmClock
 
 		private void button4_Click(object sender, EventArgs e)
 		{
-			fmDeleteEvent form3 = new fmDeleteEvent();
+			fmRewriteEvent form3 = new fmRewriteEvent();
 			form3.Owner = this;
 			form3.Show();
+			form3.rewritableRecords(str);
 		}
-
+		String str = "";
 		private void listBox1_MouseClick(object sender, MouseEventArgs e)
 		{
 			if (a != -1)
@@ -49,6 +50,7 @@ namespace SystemAlarmClock
 				{
 					listBox1.ClearSelected();
 					listBox1.SetSelected(a, true);
+					str = listBox1.Items[a].ToString();
 					listBox1.SetSelected(a + 1, true);
 					listBox1.SetSelected(a + 2, true);
 					//listBox1.SetSelected(a + 3, true);
@@ -57,6 +59,7 @@ namespace SystemAlarmClock
 				{
 					listBox1.ClearSelected();
 					listBox1.SetSelected(a - 1, true);
+					str = listBox1.Items[a-1].ToString();
 					listBox1.SetSelected(a, true);
 					listBox1.SetSelected(a + 1, true);
 					//listBox1.SetSelected(a + 2, true);
@@ -65,6 +68,7 @@ namespace SystemAlarmClock
 				{
 					listBox1.ClearSelected();
 					listBox1.SetSelected(a - 2, true);
+					str = listBox1.Items[a-2].ToString();
 					listBox1.SetSelected(a - 1, true);
 					listBox1.SetSelected(a, true);
 					//listBox1.SetSelected(a + 1, true);
@@ -73,13 +77,6 @@ namespace SystemAlarmClock
 				button2.Visible = true;
 				button4.Visible = true;
 			}
-		}
-
-		private void button1_Click(object sender, EventArgs e)
-		{
-			fmAddEvent form2 = new fmAddEvent();
-			form2.Owner = this;
-			form2.Show();
 		}
 
 		private void timer1_Tick(object sender, EventArgs e)
@@ -235,11 +232,17 @@ namespace SystemAlarmClock
 			}
 			button2.Visible = false;
 			button4.Visible = false;
-			button1.Enabled = true;
+			buCreateEvent.Enabled = true;
 			a = -1;
 			rewriteBDEvent(FileName);
 		}
 
-	}
+        private void buCreateEvent_Click(object sender, EventArgs e)
+        {
+			fmAddEvent form2 = new fmAddEvent();
+			form2.Owner = this;
+			form2.Show();
+		}
+    }
 }
 

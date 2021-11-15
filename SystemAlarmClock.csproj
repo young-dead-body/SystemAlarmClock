@@ -58,11 +58,11 @@
     <Compile Include="fmAddEvent.Designer.cs">
       <DependentUpon>fmAddEvent.cs</DependentUpon>
     </Compile>
-    <Compile Include="fmDeleteEvent.cs">
+    <Compile Include="fmRewriteEvent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fmDeleteEvent.Designer.cs">
-      <DependentUpon>fmDeleteEvent.cs</DependentUpon>
+    <Compile Include="fmRewriteEvent.Designer.cs">
+      <DependentUpon>fmRewriteEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,8 +72,8 @@
     <EmbeddedResource Include="fmAddEvent.resx">
       <DependentUpon>fmAddEvent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fmDeleteEvent.resx">
-      <DependentUpon>fmDeleteEvent.cs</DependentUpon>
+    <EmbeddedResource Include="fmRewriteEvent.resx">
+      <DependentUpon>fmRewriteEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

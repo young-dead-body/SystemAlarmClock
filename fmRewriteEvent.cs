@@ -10,16 +10,36 @@ using System.Windows.Forms;
 
 namespace SystemAlarmClock
 {
-    public partial class fmAddEvent : Form
+    public partial class fmRewriteEvent : Form
     {
-
-
-        public fmAddEvent()
+        public fmRewriteEvent()
         {
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        public void rewritableRecords(string str) 
+        {
+            richTextBox1.Text = str;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+                this.Controls.Add(panel2);
+                panel2.Visible = true;
+                this.Height = 410;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            buSave.Visible = true;
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            buSave.Visible = true;
+        }
+
+        private void buSave_Click(object sender, EventArgs e)
         {
             String reminder = "";
             DateTime eventDateTime;
@@ -30,7 +50,7 @@ namespace SystemAlarmClock
             {
                 MessageBox.Show("Ошибка ввода данных", "Ошибка!!!", MessageBoxButtons.OK);
             }
-            else 
+            else
             {
                 reminder = richTextBox1.Text;
                 eventDateTime = dateTimePicker1.Value;
@@ -63,33 +83,11 @@ namespace SystemAlarmClock
                     $"{eventDateTime.Year} {h}:{eventDateTime.Minute}";
                 if (this.Owner is MainForm owner)
                 {
-                    owner.recordList(reminder);
-                    owner.recordList(eventDateTime);
-                    owner.recordList(reminderDateTime);
-                    owner.rewriteBDEvent(FileName);
+                    owner.rewriteEvent(reminder, eventDateTime, reminderDateTime);
                 }
 
                 Close();
             }
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            buSave.Visible = true;
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            buSave.Visible = true;
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            this.Controls.Add(panel2);
-            panel2.Visible = true;
-            this.Height = 380;
         }
     }
 }
