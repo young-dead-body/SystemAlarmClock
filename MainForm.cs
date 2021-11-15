@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,6 +34,7 @@ namespace SystemAlarmClock
 			form3.Show();
 			form3.rewritableRecords(str);
 		}
+
 		String str = "";
 		private void listBox1_MouseClick(object sender, MouseEventArgs e)
 		{
@@ -80,53 +82,60 @@ namespace SystemAlarmClock
 		}
 
 		private void timer1_Tick(object sender, EventArgs e)
-		{
+        {
+            DateTime systemTime = DateTime.Now;
+            eventReminder(systemTime);
+            deletionReminder(systemTime);
+        }
 
-			DateTime systemTime = DateTime.Now;
-			for (int i = 0; i < (listBox1.Items.Count + 1) / 3; i++)
-			{
-				DateTime date = DateTime.Parse(Convert.ToString(listBox1.Items[1 + i * 3])); // это время до события
-				if (date.Year <= systemTime.Year)
-					if (date.Month <= systemTime.Month)
-						if (date.Day <= systemTime.Day)
-							if (date.Day == systemTime.Day)
-							{
-								if (date.Hour <= systemTime.Hour)
-									if (date.Hour == systemTime.Hour)
-									{
-										if (date.Minute <= systemTime.Minute)
+        private void deletionReminder(DateTime systemTime)
+        {
+            for (int i = 0; i < (listBox1.Items.Count + 1) / 3; i++)
+            {
+                DateTime date = DateTime.Parse(Convert.ToString(listBox1.Items[2 + i * 3])); // это время до события
+                if (date.Year == systemTime.Year)
+                    if (date.Month == systemTime.Month)
+                        if (date.Day == systemTime.Day)
+                            if (date.Hour == systemTime.Hour)
+                                if (date.Minute == systemTime.Minute)
+                                {
+									SoundPlayer sp = new SoundPlayer("F:\\JOB\\7 семак\\Системное ПО\\КУРСАЧ\\SystemAlarmClock\\Resourses\\sound.wav");
+									sp.Play();
+									MessageBox.Show("Скоро придет время события \n " +
+                                        $"{Convert.ToString(listBox1.Items[1 + i * 3])}", "ВОУ ВОУ");									
+								}
+            }
+        }
+
+        private void eventReminder(DateTime systemTime)
+        {
+            for (int i = 0; i < (listBox1.Items.Count + 1) / 3; i++)
+            {
+                DateTime date = DateTime.Parse(Convert.ToString(listBox1.Items[1 + i * 3])); // это время события
+                if (date.Year <= systemTime.Year)
+                    if (date.Month <= systemTime.Month)
+                        if (date.Day <= systemTime.Day)
+                            if (date.Day == systemTime.Day)
+                            {
+                                if (date.Hour <= systemTime.Hour)
+                                    if (date.Hour == systemTime.Hour)
+                                    {
+                                        if (date.Minute <= systemTime.Minute)
                                         {
                                             deletingEvent(i);
                                         }
                                     }
-									else 
-									{
-										deletingEvent(i);
-									}
-							}
-							else 
-							{
-								deletingEvent(i);
-							}
-			}
-
-
-			for (int i = 0; i < (listBox1.Items.Count + 1) / 3; i++)
-			{
-				DateTime date = DateTime.Parse(Convert.ToString(listBox1.Items[2 + i * 3])); // это время события
-				if (date.Year == systemTime.Year)
-					if (date.Month == systemTime.Month)
-						if (date.Day == systemTime.Day)
-							if (date.Hour == systemTime.Hour)
-								if (date.Minute == systemTime.Minute)
-								{
-									MessageBox.Show("Скоро придет время события \n " +
-										$"{Convert.ToString(listBox1.Items[1 + i * 3])}", "ВОУ ВОУ");
-								}
-			}
-
-
-		}
+                                    else
+                                    {
+                                        deletingEvent(i);
+                                    }
+                            }
+                            else
+                            {
+                                deletingEvent(i);
+                            }
+            }
+        }
 
         private void deletingEvent(int i)
         {

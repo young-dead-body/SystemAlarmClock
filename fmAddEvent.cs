@@ -52,7 +52,7 @@ namespace SystemAlarmClock
                 int h = (int)eventDateTime.Hour;
                 if (h - ch < 0)
                 {
-                    h = h + (h - ch);
+                    h = 24 + (h - ch);
                     d--;
                 }
                 else
