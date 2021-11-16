@@ -43,7 +43,7 @@ namespace SystemAlarmClock
 				listBox1.ClearSelected();
 				a = -1;
 				button2.Visible = false;
-				button4.Visible = false;
+				buEditEvents.Visible = false;
 			}
 			else
 			{
@@ -77,7 +77,7 @@ namespace SystemAlarmClock
 				}
 
 				button2.Visible = true;
-				button4.Visible = true;
+				buEditEvents.Visible = true;
 			}
 		}
 
@@ -88,7 +88,7 @@ namespace SystemAlarmClock
             deletionReminder(systemTime);
         }
 
-        private void deletionReminder(DateTime systemTime)
+        private void eventReminder(DateTime systemTime)
         {
             for (int i = 0; i < (listBox1.Items.Count + 1) / 3; i++)
             {
@@ -107,20 +107,20 @@ namespace SystemAlarmClock
             }
         }
 
-        private void eventReminder(DateTime systemTime)
+        private void deletionReminder(DateTime systemTime)
         {
             for (int i = 0; i < (listBox1.Items.Count + 1) / 3; i++)
             {
-                DateTime date = DateTime.Parse(Convert.ToString(listBox1.Items[1 + i * 3])); // это время события
-                if (date.Year <= systemTime.Year)
-                    if (date.Month <= systemTime.Month)
-                        if (date.Day <= systemTime.Day)
-                            if (date.Day == systemTime.Day)
+				DateTime date1 = DateTime.Parse(Convert.ToString(listBox1.Items[1 + i * 3])); // это время события
+                if (date1.Year <= systemTime.Year)
+                    if (date1.Month <= systemTime.Month)
+                        if (date1.Day <= systemTime.Day)
+                            if (date1.Day == systemTime.Day)
                             {
-                                if (date.Hour <= systemTime.Hour)
-                                    if (date.Hour == systemTime.Hour)
+                                if (date1.Hour <= systemTime.Hour)
+                                    if (date1.Hour == systemTime.Hour)
                                     {
-                                        if (date.Minute <= systemTime.Minute)
+                                        if (date1.Minute <= systemTime.Minute)
                                         {
                                             deletingEvent(i);
                                         }
@@ -212,7 +212,7 @@ namespace SystemAlarmClock
 				listBox1.Items.RemoveAt(count - 2);
 			}
 			button2.Visible = false;
-			button4.Visible = false;
+			buEditEvents.Visible = false;
 			a = -1;
 		}
 
@@ -240,7 +240,7 @@ namespace SystemAlarmClock
 				listBox1.Items[a] = str2;
 			}
 			button2.Visible = false;
-			button4.Visible = false;
+			buEditEvents.Visible = false;
 			buCreateEvent.Enabled = true;
 			a = -1;
 			rewriteBDEvent(FileName);
@@ -248,9 +248,10 @@ namespace SystemAlarmClock
 
         private void buCreateEvent_Click(object sender, EventArgs e)
         {
-			fmAddEvent form2 = new fmAddEvent();
-			form2.Owner = this;
-			form2.Show();
+            fmAddEvent form2 = new fmAddEvent();
+            form2.Owner = this;
+            form2.Show();
+        
 		}
     }
 }

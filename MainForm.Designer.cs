@@ -36,7 +36,7 @@ namespace SystemAlarmClock
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.buCreateEvent = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.buEditEvents = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button3
@@ -98,18 +98,18 @@ namespace SystemAlarmClock
             this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button4
+            // buEditEvents
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(514, 94);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(121, 47);
-            this.button4.TabIndex = 42;
-            this.button4.Text = "Изменить напоминание";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Visible = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.buEditEvents.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buEditEvents.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buEditEvents.Location = new System.Drawing.Point(514, 94);
+            this.buEditEvents.Name = "buEditEvents";
+            this.buEditEvents.Size = new System.Drawing.Size(121, 47);
+            this.buEditEvents.TabIndex = 42;
+            this.buEditEvents.Text = "Редактировать событие";
+            this.buEditEvents.UseVisualStyleBackColor = false;
+            this.buEditEvents.Visible = false;
+            this.buEditEvents.Click += new System.EventHandler(this.button4_Click);
             // 
             // MainForm
             // 
@@ -117,7 +117,7 @@ namespace SystemAlarmClock
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(650, 436);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.buEditEvents);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.buCreateEvent);
             this.Controls.Add(this.listBox1);
@@ -137,7 +137,7 @@ namespace SystemAlarmClock
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button buCreateEvent;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button buEditEvents;
     }
 }
 
