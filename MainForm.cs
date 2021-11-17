@@ -14,13 +14,43 @@ namespace SystemAlarmClock
 {
 	public partial class MainForm : Form
 	{
+		String str = "";
 		string FileName = "DB.txt";
+		int a = -1;
+
 		public MainForm()
 		{
 			InitializeComponent();
 		}
 
-		int a = -1;
+		private void Form1_Load(object sender, EventArgs e)
+		{
+			timer1.Enabled = true;
+			StreamReader reader = new StreamReader(FileName);
+			while (!reader.EndOfStream)
+			{
+				listBox1.Items.Add(reader.ReadLine());
+			}
+			reader.Close();
+		}
+		
+		private void buCreateEvent_Click(object sender, EventArgs e)
+		{
+			fmAddEvent form2 = new fmAddEvent();
+			form2.Owner = this;
+			form2.Show();
+
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			if (MessageBox.Show($"Вы уверены, что хотели бы удалить событие: '{str}'?", "Подтвердите удаление",
+				MessageBoxButtons.OKCancel) == DialogResult.OK)
+			{
+				deleteEvent(a);
+				rewriteBDEvent(FileName);
+			}
+		}
 
 		private void button3_Click(object sender, EventArgs e)
 		{
@@ -35,7 +65,6 @@ namespace SystemAlarmClock
 			form3.rewritableRecords(str);
 		}
 
-		String str = "";
 		private void listBox1_MouseClick(object sender, MouseEventArgs e)
 		{
 			if (a != -1)
@@ -101,8 +130,10 @@ namespace SystemAlarmClock
                                 {
 									SoundPlayer sp = new SoundPlayer("F:\\JOB\\7 семак\\Системное ПО\\КУРСАЧ\\SystemAlarmClock\\Resourses\\sound.wav");
 									sp.Play();
-									MessageBox.Show("Скоро придет время события \n " +
-                                        $"{Convert.ToString(listBox1.Items[1 + i * 3])}", "ВОУ ВОУ");									
+									MessageBox.Show("Скоро придет время события: \n " +
+										$"{Convert.ToString(listBox1.Items[0 + i * 3])}\n" +
+										$"{Convert.ToString(listBox1.Items[1 + i * 3])}", 
+										"Напоминание о приближении события");									
 								}
             }
         }
@@ -149,27 +180,6 @@ namespace SystemAlarmClock
 				rewriteBDEvent(FileName);
 			}
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-		{
-			timer1.Enabled = true;
-			StreamReader reader = new StreamReader(FileName);
-			while (!reader.EndOfStream)
-			{
-				listBox1.Items.Add(reader.ReadLine());
-			}
-			reader.Close();
-		}
-
-		private void button2_Click(object sender, EventArgs e)
-		{
-			if (MessageBox.Show($"Вы уверены что хотели бы удалить событие{str}?", "Подтвердите удаление",
-				MessageBoxButtons.OKCancel) == DialogResult.OK)
-			{
-				deleteEvent(a);
-				rewriteBDEvent(FileName);
-			}
-		}
 
 		public void recordList(string str)
 		{
@@ -250,13 +260,7 @@ namespace SystemAlarmClock
 			rewriteBDEvent(FileName);
 		}
 
-        private void buCreateEvent_Click(object sender, EventArgs e)
-        {
-            fmAddEvent form2 = new fmAddEvent();
-            form2.Owner = this;
-            form2.Show();
-        
-		}
+
     }
 }
 

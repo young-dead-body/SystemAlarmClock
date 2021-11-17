@@ -56,7 +56,7 @@ namespace SystemAlarmClock
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(426, 380);
+            this.panel1.Size = new System.Drawing.Size(426, 300);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -77,7 +77,6 @@ namespace SystemAlarmClock
             this.dateTimePicker1.Size = new System.Drawing.Size(83, 22);
             this.dateTimePicker1.TabIndex = 38;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            
             // 
             // richTextBox1
             // 
@@ -92,10 +91,10 @@ namespace SystemAlarmClock
             this.buSave.BackColor = System.Drawing.SystemColors.ControlText;
             this.buSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buSave.ForeColor = System.Drawing.Color.LightGray;
-            this.buSave.Location = new System.Drawing.Point(247, 197);
+            this.buSave.Location = new System.Drawing.Point(211, 197);
             this.buSave.Margin = new System.Windows.Forms.Padding(4);
             this.buSave.Name = "buSave";
-            this.buSave.Size = new System.Drawing.Size(166, 37);
+            this.buSave.Size = new System.Drawing.Size(202, 35);
             this.buSave.TabIndex = 35;
             this.buSave.Text = "Сохранить событие";
             this.buSave.UseVisualStyleBackColor = false;
@@ -224,7 +223,6 @@ namespace SystemAlarmClock
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 300);
-            //this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fmAddEvent";

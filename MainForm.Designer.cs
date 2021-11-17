@@ -80,7 +80,7 @@ namespace SystemAlarmClock
             this.buCreateEvent.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buCreateEvent.Location = new System.Drawing.Point(389, 35);
             this.buCreateEvent.Name = "buCreateEvent";
-            this.buCreateEvent.Size = new System.Drawing.Size(246, 49);
+            this.buCreateEvent.Size = new System.Drawing.Size(249, 49);
             this.buCreateEvent.TabIndex = 40;
             this.buCreateEvent.Text = "Добавить событие";
             this.buCreateEvent.UseVisualStyleBackColor = false;
@@ -94,7 +94,7 @@ namespace SystemAlarmClock
             this.buDeleteEvent.Name = "buDeleteEvent";
             this.buDeleteEvent.Size = new System.Drawing.Size(121, 47);
             this.buDeleteEvent.TabIndex = 41;
-            this.buDeleteEvent.Text = "Удалить напоминание";
+            this.buDeleteEvent.Text = "Удалить событие";
             this.buDeleteEvent.UseVisualStyleBackColor = false;
             this.buDeleteEvent.Visible = false;
             this.buDeleteEvent.Click += new System.EventHandler(this.button2_Click);
@@ -105,7 +105,7 @@ namespace SystemAlarmClock
             this.buEditEvents.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buEditEvents.Location = new System.Drawing.Point(514, 94);
             this.buEditEvents.Name = "buEditEvents";
-            this.buEditEvents.Size = new System.Drawing.Size(121, 47);
+            this.buEditEvents.Size = new System.Drawing.Size(124, 47);
             this.buEditEvents.TabIndex = 42;
             this.buEditEvents.Text = "Редактировать событие";
             this.buEditEvents.UseVisualStyleBackColor = false;
@@ -119,7 +119,7 @@ namespace SystemAlarmClock
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(13, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 23);
+            this.label1.Size = new System.Drawing.Size(138, 18);
             this.label1.TabIndex = 43;
             this.label1.Text = "Список событий";
             // 
