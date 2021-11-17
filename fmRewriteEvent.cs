@@ -85,7 +85,7 @@ namespace SystemAlarmClock
                 {
                     owner.rewriteEvent(reminder, eventDateTime, reminderDateTime);
                 }
-
+                   //THE GAY
                 Close();
             }
         }
