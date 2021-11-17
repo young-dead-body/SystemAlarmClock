@@ -171,7 +171,7 @@ namespace SystemAlarmClock
         private void deletingEvent(int i)
         {
             if (MessageBox.Show($"Вот и пришло завершение события \n " +
-							$"Назавение события: {Convert.ToString(listBox1.Items[0 + i * 3])} \n"+
+							$"Название события: {Convert.ToString(listBox1.Items[0 + i * 3])} \n"+
 							$"Время события: {Convert.ToString(listBox1.Items[1 + i * 3])}", 
 							"Напоминание о завершении события", 
 							MessageBoxButtons.YesNo) == DialogResult.Yes)
