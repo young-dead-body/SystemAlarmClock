@@ -42,7 +42,7 @@ namespace SystemAlarmClock
 			{
 				listBox1.ClearSelected();
 				a = -1;
-				button2.Visible = false;
+				buDeleteEvent.Visible = false;
 				buEditEvents.Visible = false;
 			}
 			else
@@ -76,7 +76,7 @@ namespace SystemAlarmClock
 					//listBox1.SetSelected(a + 1, true);
 				}
 
-				button2.Visible = true;
+				buDeleteEvent.Visible = true;
 				buEditEvents.Visible = true;
 			}
 		}
@@ -163,8 +163,12 @@ namespace SystemAlarmClock
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			deleteEvent(a);
-			rewriteBDEvent(FileName);
+			if (MessageBox.Show($"Вы уверены что хотели бы удалить событие{str}?", "Подтвердите удаление",
+				MessageBoxButtons.OKCancel) == DialogResult.OK)
+			{
+				deleteEvent(a);
+				rewriteBDEvent(FileName);
+			}
 		}
 
 		public void recordList(string str)
@@ -211,7 +215,7 @@ namespace SystemAlarmClock
 				listBox1.Items.RemoveAt(count - 2);
 				listBox1.Items.RemoveAt(count - 2);
 			}
-			button2.Visible = false;
+			buDeleteEvent.Visible = false;
 			buEditEvents.Visible = false;
 			a = -1;
 		}
@@ -239,7 +243,7 @@ namespace SystemAlarmClock
 				listBox1.Items[a - 1] = dateTime1;
 				listBox1.Items[a] = str2;
 			}
-			button2.Visible = false;
+			buDeleteEvent.Visible = false;
 			buEditEvents.Visible = false;
 			buCreateEvent.Enabled = true;
 			a = -1;
