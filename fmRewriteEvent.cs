@@ -12,33 +12,63 @@ namespace SystemAlarmClock
 {
     public partial class fmRewriteEvent : Form
     {
+        /// <summary>
+        /// Конструктор класса fmRewriteEvent
+        /// </summary>
         public fmRewriteEvent()
         {
             InitializeComponent();
         }
 
-        public void rewritableRecords(string str) 
+        /// <summary>
+        /// перезапись СОБЫТИЯ
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="str1"></param>
+        public void rewritableRecords(string str, string str1) 
         {
             richTextBox1.Text = str;
+            dateTimePicker1.Value = DateTime.Parse(str1);
+
         }
 
+        /// <summary>
+        /// нажатие на время события
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-                this.Controls.Add(panel2);
-                panel2.Visible = true;
-                this.Height = 410;
+            this.Controls.Add(panel2);
+            panel2.Visible = true;
+            this.Height = 410;
         }
 
+        /// <summary>
+        /// выбор часов для напоминания
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             buSave.Visible = true;
         }
 
+        /// <summary>
+        /// выбор дней для напоминания
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             buSave.Visible = true;
         }
 
+        /// <summary>
+        /// нажатие на кнопку "Сохранить событие"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buSave_Click(object sender, EventArgs e)
         {
             String reminder = "";

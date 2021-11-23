@@ -13,12 +13,19 @@ namespace SystemAlarmClock
     public partial class fmAddEvent : Form
     {
 
-
+        /// <summary>
+        /// Конструктор класса fmAddEvent
+        /// </summary>
         public fmAddEvent()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработчик события нажатия на кнопку "Сохранить событие"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             String reminder = "";
@@ -74,17 +81,32 @@ namespace SystemAlarmClock
 
         }
 
+        /// <summary>
+        /// Если пользователь выбрал часы до события
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             buSave.Visible = true;
 
         }
 
+        /// <summary>
+        /// Если пользователь выбрал дни до события
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             buSave.Visible = true;
         }
 
+        /// <summary>
+        /// Пользователь выбрал дату события
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             this.Controls.Add(panel2);

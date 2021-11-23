@@ -56,14 +56,14 @@ namespace SystemAlarmClock
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(424, 248);
+            this.panel1.Size = new System.Drawing.Size(364, 86);
             this.panel1.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(114, 18);
             this.label1.TabIndex = 39;
@@ -82,7 +82,7 @@ namespace SystemAlarmClock
             // 
             this.richTextBox1.Location = new System.Drawing.Point(12, 31);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(402, 124);
+            this.richTextBox1.Size = new System.Drawing.Size(340, 124);
             this.richTextBox1.TabIndex = 37;
             this.richTextBox1.Text = "";
             // 
@@ -91,7 +91,7 @@ namespace SystemAlarmClock
             this.buSave.BackColor = System.Drawing.SystemColors.ControlText;
             this.buSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buSave.ForeColor = System.Drawing.Color.LightGray;
-            this.buSave.Location = new System.Drawing.Point(247, 197);
+            this.buSave.Location = new System.Drawing.Point(186, 206);
             this.buSave.Margin = new System.Windows.Forms.Padding(4);
             this.buSave.Name = "buSave";
             this.buSave.Size = new System.Drawing.Size(166, 37);
@@ -111,9 +111,9 @@ namespace SystemAlarmClock
             this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel2.Location = new System.Drawing.Point(0, 248);
+            this.panel2.Location = new System.Drawing.Point(0, 86);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(424, 137);
+            this.panel2.Size = new System.Drawing.Size(364, 137);
             this.panel2.TabIndex = 3;
             this.panel2.Visible = false;
             // 
@@ -121,7 +121,7 @@ namespace SystemAlarmClock
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(17, 17);
+            this.label4.Location = new System.Drawing.Point(9, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(383, 17);
             this.label4.TabIndex = 4;
@@ -222,7 +222,7 @@ namespace SystemAlarmClock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(424, 385);
+            this.ClientSize = new System.Drawing.Size(364, 223);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
