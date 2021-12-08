@@ -43,16 +43,21 @@ namespace SystemAlarmClock
 			}
 			reader.Close(); // ОБЯЗАТЕЛЬНОЕ ЗАКРЫТИЕ ФАЙЛА
 		}
-		
+
 		/// <summary>
 		/// Обработчик события нажания на кнопку "Добавить событие"
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
+		/// 
+		fmAddEvent form2;
 		private void buCreateEvent_Click(object sender, EventArgs e)
 		{
-			fmAddEvent form2 = new fmAddEvent();
-			form2.Owner = this;
+			if (form2 == null)
+			{
+				form2 = new fmAddEvent();
+				form2.FormClosed += (x, y) => { form2 = null; }; //для избежания проблем с повторным открытием после закрытия
+			}
 			form2.Show();
 		}
 
@@ -86,10 +91,15 @@ namespace SystemAlarmClock
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
+		/// 
+		fmRewriteEvent form3;
 		private void button4_Click(object sender, EventArgs e)
 		{
-			fmRewriteEvent form3 = new fmRewriteEvent();
-			form3.Owner = this;
+			if (form3 == null)
+			{
+				form3 = new fmRewriteEvent();
+				form3.FormClosed += (x, y) => { form3 = null; }; //для избежания проблем с повторным открытием после закрытия
+			}
 			form3.Show();
 			form3.rewritableRecords(str, str1);
 		}
