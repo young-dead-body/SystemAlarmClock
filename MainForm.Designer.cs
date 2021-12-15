@@ -38,6 +38,8 @@ namespace SystemAlarmClock
             this.buDeleteEvent = new System.Windows.Forms.Button();
             this.buEditEvents = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // buClose
@@ -56,7 +58,7 @@ namespace SystemAlarmClock
             // 
             // timer1
             // 
-            this.timer1.Interval = 60000;
+            this.timer1.Interval = 50000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // listBox1
@@ -123,12 +125,31 @@ namespace SystemAlarmClock
             this.label1.TabIndex = 43;
             this.label1.Text = "Список событий";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.OrangeRed;
+            this.button1.ForeColor = System.Drawing.SystemColors.Control;
+            this.button1.Image = global::SystemAlarmClock.Properties.Resources._1904660_email_envelope_letter_mail_message_post_send_122510;
+            this.button1.Location = new System.Drawing.Point(599, 220);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(39, 30);
+            this.button1.TabIndex = 44;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 15000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(650, 436);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buEditEvents);
             this.Controls.Add(this.buDeleteEvent);
@@ -153,6 +174,8 @@ namespace SystemAlarmClock
         private System.Windows.Forms.Button buDeleteEvent;
         private System.Windows.Forms.Button buEditEvents;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 

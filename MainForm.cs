@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,9 @@ namespace SystemAlarmClock
 		String str1 = ""; // строка для хранения данных о времени события
 		string FileName = "DB.txt"; // наименование файла с базой данных
 		int a = -1; // номер строки на которую нажал пользователь 
+		int countMes = 0;
+
+		ArrayList unreadMessages = new ArrayList();
 
 		/// <summary>
 		/// конструктор класса MainForm
@@ -58,6 +62,7 @@ namespace SystemAlarmClock
 				form2 = new fmAddEvent();
 				form2.FormClosed += (x, y) => { form2 = null; }; //для избежания проблем с повторным открытием после закрытия
 			}
+			form2.Owner = this;
 			form2.Show();
 		}
 
@@ -100,6 +105,7 @@ namespace SystemAlarmClock
 				form3 = new fmRewriteEvent();
 				form3.FormClosed += (x, y) => { form3 = null; }; //для избежания проблем с повторным открытием после закрытия
 			}
+			form3.Owner = this;
 			form3.Show();
 			form3.rewritableRecords(str, str1);
 		}
@@ -164,83 +170,119 @@ namespace SystemAlarmClock
             DateTime systemTime = DateTime.Now;
             eventReminder(systemTime);
             deletionReminder(systemTime);
+			timer2.Enabled = true;
         }
 
 		/// <summary>
 		/// ВАРИАНТ СОБЫТИЯ "НАПОМИНАНИЕ О СОБЫТИИ"
 		/// </summary>
 		/// <param name="systemTime"></param>
-        private void eventReminder(DateTime systemTime)
+		MessageCustom eR;
+		private void eventReminder(DateTime systemTime)
         {
             for (int i = 0; i < (listBox1.Items.Count + 1) / 3; i++)
             {
                 DateTime date = DateTime.Parse(Convert.ToString(listBox1.Items[2 + i * 3])); // это время до события
-                if (date.Year == systemTime.Year)
-                    if (date.Month == systemTime.Month)
-                        if (date.Day == systemTime.Day)
-                            if (date.Hour == systemTime.Hour)
-                                if (date.Minute == systemTime.Minute)
-                                {
-									SoundPlayer sp = new SoundPlayer("F:\\JOB\\7 семак\\Системное ПО\\КУРСАЧ\\SystemAlarmClock\\Resourses\\sound.wav");
-									sp.Play();
-									MessageBox.Show("Скоро придет время события: \n " +
-										$"{Convert.ToString(listBox1.Items[0 + i * 3])}\n" +
-										$"{Convert.ToString(listBox1.Items[1 + i * 3])}", 
-										"Напоминание о приближении события");									
-								}
+				if (passingUnreadMessages(i))
+				{
+					if (date.Year == systemTime.Year)
+						if (date.Month == systemTime.Month)
+							if (date.Day == systemTime.Day)
+								if (date.Hour == systemTime.Hour)
+									if (date.Minute == systemTime.Minute)
+									{
+										SoundPlayer sp = new SoundPlayer("F:\\JOB\\7 семак\\Системное ПО\\КУРСАЧ\\SystemAlarmClock\\Resourses\\sound.wav");
+										sp.Play();
+
+										eR = new MessageCustom(
+											$"{Convert.ToString(listBox1.Items[0 + i * 3])}",
+											$"{Convert.ToString(listBox1.Items[1 + i * 3])}", false);
+										eR.Owner = this;
+										eR.Reminder = Convert.ToString(listBox1.Items[2 + i * 3]);
+										eR.IndexRewriteReminder = 1 + i * 3;
+										eR.Show();
+									}
+				}
             }
         }
+
+		public void rewriteReminder(int indexRewriteReminder, String rem) 
+		{
+			listBox1.Items[indexRewriteReminder] = rem;
+		}
 
 		/// <summary>
 		/// ВАРИНАТ СОБЫТИЯ "НАПОМИНАНЕИ О ЗАВЕРШЕНИИ СОБЫТИЯ"
 		/// </summary>
 		/// <param name="systemTime"></param>
-        private void deletionReminder(DateTime systemTime)
+		private void deletionReminder(DateTime systemTime)
         {
             for (int i = 0; i < (listBox1.Items.Count + 1) / 3; i++)
             {
 				DateTime date1 = DateTime.Parse(Convert.ToString(listBox1.Items[1 + i * 3])); // это время события
-                if (date1.Year <= systemTime.Year)
-                    if (date1.Month <= systemTime.Month)
-                        if (date1.Day <= systemTime.Day)
-                            if (date1.Day == systemTime.Day)
-                            {
-                                if (date1.Hour <= systemTime.Hour)
-                                    if (date1.Hour == systemTime.Hour)
-                                    {
-                                        if (date1.Minute <= systemTime.Minute)
-                                        {
-                                            deletingEvent(i);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        deletingEvent(i);
-                                    }
-                            }
-                            else
-                            {
-                                deletingEvent(i);
-                            }
-            }
+				if (passingUnreadMessages(i))
+				{
+					if (date1.Year <= systemTime.Year)
+						if (date1.Year == systemTime.Year)
+						{
+							if (date1.Month <= systemTime.Month)
+								if (date1.Month == systemTime.Month)
+								{
+									if (date1.Day <= systemTime.Day)
+										if (date1.Day == systemTime.Day)
+										{
+											if (date1.Hour <= systemTime.Hour)
+												if (date1.Hour == systemTime.Hour)
+												{
+													if (date1.Minute <= systemTime.Minute)
+													{
+														deletingEvent(i);
+													}
+												}
+												else
+												{
+													deletingEvent(i);
+												}
+										}
+										else
+										{
+											deletingEvent(i);
+										}
+								}
+								else
+								{
+									deletingEvent(i);
+								}
+						}
+						else
+						{
+							deletingEvent(i);
+						}
+				}
+			}
         }
 
 		/// <summary>
 		/// ВЫВОД СООБЩЕНИЯ О ЗАВЕРШЕНИИ СОБЫТИЯ
 		/// </summary>
 		/// <param name="i"></param>
-        private void deletingEvent(int i)
+		MessageCustom dE;
+		private void deletingEvent(int i)
         {
-            if (MessageBox.Show($"Вот и пришло завершение события \n " +
-							$"Название события: {Convert.ToString(listBox1.Items[0 + i * 3])} \n"+
-							$"Время события: {Convert.ToString(listBox1.Items[1 + i * 3])}", 
-							"Напоминание о завершении события", 
-							MessageBoxButtons.YesNo) == DialogResult.Yes)
-			{
-				deleteEvent(2 + i * 3);
-				rewriteBDEvent(FileName);
-			}
-        }
+			dE = new MessageCustom($"{Convert.ToString(listBox1.Items[0 + i * 3])}",
+							$"{Convert.ToString(listBox1.Items[1 + i * 3])}",
+							true);
+			dE.count = i;
+			dE.Owner = this;
+			dE.Reminder = Convert.ToString(listBox1.Items[2 + i * 3]);
+			dE.Show();
+		}
+
+		public void deleteInMes(int count) 
+		{
+			deleteEvent(2 + count * 3);
+			rewriteBDEvent(FileName);
+		}
 
 		/// <summary>
 		/// ЗАПИСЬ СТРОКИ В СПИСОК 
@@ -281,9 +323,15 @@ namespace SystemAlarmClock
 		/// <param name="count"></param>
 		public void deleteEvent(int count)
 		{
+			int num;
+			ArrayList aL = new ArrayList();
 			if (count % 3 == 0)
 			{
 				listBox1.ClearSelected();
+				num = count;
+				aL.Add(listBox1.Items[num]);
+				aL.Add(listBox1.Items[num + 1]);
+				aL.Add(listBox1.Items[num + 2]);
 				listBox1.Items.RemoveAt(count);
 				listBox1.Items.RemoveAt(count);
 				listBox1.Items.RemoveAt(count);
@@ -291,6 +339,7 @@ namespace SystemAlarmClock
 			if (count % 3 == 1)
 			{
 				listBox1.ClearSelected();
+				num = count - 1;
 				listBox1.Items.RemoveAt(count - 1);
 				listBox1.Items.RemoveAt(count - 1);
 				listBox1.Items.RemoveAt(count - 1);
@@ -298,6 +347,10 @@ namespace SystemAlarmClock
 			if (count % 3 == 2)
 			{
 				listBox1.ClearSelected();
+				num = count - 2;
+				aL.Add(listBox1.Items[num]);
+				aL.Add(listBox1.Items[num + 1]);
+				aL.Add(listBox1.Items[num + 2]);
 				listBox1.Items.RemoveAt(count - 2);
 				listBox1.Items.RemoveAt(count - 2);
 				listBox1.Items.RemoveAt(count - 2);
@@ -305,6 +358,36 @@ namespace SystemAlarmClock
 			buDeleteEvent.Visible = false;
 			buEditEvents.Visible = false;
 			a = -1;
+
+			passingUnreadMessagesForDelete(aL);
+			if (countMes == 0)
+			{
+				button1.Visible = false;
+			}
+		}
+
+		public void passingUnreadMessagesForDelete(ArrayList aL) //готово 
+		{
+			String name = aL[0].ToString(); // название события
+			String date = aL[1].ToString(); // время события
+			String reminder = aL[2].ToString(); // время события
+
+			for (int a = 0; a < (countMes) / 4; a++)
+			{
+				if (name == unreadMessages[1 + a * 4].ToString())
+				{
+					if (date == unreadMessages[2 + a * 4].ToString())
+					{
+						if (reminder == unreadMessages[3 + a * 4].ToString())
+						{
+							unreadMessages.RemoveAt(a * 4);
+							unreadMessages.RemoveAt(a * 4);
+							unreadMessages.RemoveAt(a * 4);
+							unreadMessages.RemoveAt(a * 4);
+						}
+					}
+				}
+			}
 		}
 
 		/// <summary>
@@ -342,6 +425,75 @@ namespace SystemAlarmClock
 			a = -1;
 			rewriteBDEvent(FileName);
 		}
-    }
+
+		MessageCustom messageCustom;
+		public void addUnreadMessage(String str) 
+		{
+			unreadMessages.Add(str); // работает отлично <3
+			countMes++;
+			if (countMes % 4 == 0)
+			{
+				if (messageCustom == null)
+				{
+					messageCustom = new MessageCustom("Оповещение!!", "У вас есть непрочитанные сообщения");
+					messageCustom.FormClosed += (x, y) => { messageCustom = null; }; //для избежания проблем с повторным открытием после закрытия
+				}
+				messageCustom.Owner = this;
+				messageCustom.Show();
+				button1.Visible = true;
+			}
+			else
+			{
+				button1.Visible = false;
+			}
+		}
+
+		UnreadMessage unMes;
+
+		public void openWindowMessage() 
+        {
+			if (unMes == null)
+			{
+				unMes = new UnreadMessage(unreadMessages);
+				unMes.FormClosed += (x, y) => { unMes = null; }; //для избежания проблем с повторным открытием после закрытия
+			}
+			unMes.Owner = this;
+			unMes.Show();
+		}
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+			openWindowMessage();
+		}
+
+		private void timer2_Tick(object sender, EventArgs e)
+        {
+			
+		}
+
+		private bool passingUnreadMessages(int i) //готово 
+		{
+			String name = Convert.ToString(listBox1.Items[0 + i * 3]); // название события
+			String date = Convert.ToString(listBox1.Items[1 + i * 3]); // время события
+			String reminder = Convert.ToString(listBox1.Items[2 + i * 3]); // время события
+
+			for (int a = 0; a < (countMes + 1) / 4; a++)
+            {
+				if (name == unreadMessages[1 + a * 4].ToString()) 
+				{
+					if (date == unreadMessages[2 + a * 4].ToString())
+					{
+						if (reminder == unreadMessages[3 + a * 4].ToString())
+						{
+							return false;
+						}
+					}
+				}
+            }
+
+			return true;
+		}
+
+	}
 }
 

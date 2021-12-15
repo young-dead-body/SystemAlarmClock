@@ -41,7 +41,7 @@ namespace SystemAlarmClock
         {
             this.Controls.Add(panel2);
             panel2.Visible = true;
-            this.Height = 410;
+            this.Height = 420;
         }
 
         /// <summary>
