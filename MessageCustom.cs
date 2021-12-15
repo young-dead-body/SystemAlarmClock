@@ -176,7 +176,7 @@ namespace SystemAlarmClock
 
         }
 
-        private void checkingForTransfer(string time1, string time2)
+        public bool checkingForTransfer(string time1, string time2)
         {
             DateTime dateTimeEvent = DateTime.Parse(time2);
             DateTime dateTimeReminder = DateTime.Parse(time1);
@@ -188,6 +188,8 @@ namespace SystemAlarmClock
                     "ОШИБКА!!!",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                Close();
+                return true;
             }
             else
             {
@@ -197,6 +199,7 @@ namespace SystemAlarmClock
                     owner.rewriteBDEvent("DB.txt");
                 }
                 Close();
+                return false;
             }
         }
     }

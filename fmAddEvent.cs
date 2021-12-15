@@ -41,33 +41,10 @@ namespace SystemAlarmClock
             {
                 reminder = richTextBox1.Text;
                 eventDateTime = dateTimePicker1.Value;
-                int d = (int)eventDateTime.Day;
-                int m = (int)eventDateTime.Month;
-                int cd = comboBox2.SelectedIndex;
-                int ch = comboBox1.SelectedIndex;
-                cd++;
-                ch++;
-                if (d - cd < 0)
-                {
-                    d = d + (d - cd);
-                    m--;
-                }
-                else
-                {
-                    d = d - cd;
-                }
-                int h = (int)eventDateTime.Hour;
-                if (h - ch < 0)
-                {
-                    h = 24 + (h - ch);
-                    d--;
-                }
-                else
-                {
-                    h = h - ch;
-                }
-                reminderDateTime = $"{d}.{m}." +
-                    $"{eventDateTime.Year} {h}:{eventDateTime.Minute}";
+
+                reminderDateTime = countingReminderTime(eventDateTime.ToString(), 
+                                                        comboBox2.SelectedIndex+1, 
+                                                        comboBox1.SelectedIndex+1);
                 if (this.Owner is MainForm owner)
                 {
                     owner.recordList(reminder);
@@ -112,6 +89,85 @@ namespace SystemAlarmClock
             this.Controls.Add(panel2);
             panel2.Visible = true;
             this.Height = 380;
+        }
+
+        public string countingReminderTime (String date1, int day, int hour)
+        {
+            DateTime eventDateTime = DateTime.Parse(date1);
+            int d = (int)eventDateTime.Day;
+            int m = (int)eventDateTime.Month;
+            int year = (int)eventDateTime.Year;
+            int cd = day;
+            int ch = hour;
+            if (d - cd < 0)
+            {
+                m--;
+                if (m == 0)
+                {
+                    m = 12;
+                    year--;
+                }
+                d = getDays(m) + (d - cd);              
+            }
+            else
+            {
+                d = d - cd;
+                if (d == 0) 
+                {
+                    m--;
+                    if (m == 0)
+                    {
+                        m = 12;
+                        year--;
+                    }
+                    d = getDays(m);
+                }
+            }
+
+            int h = (int)eventDateTime.Hour;
+            if (h - ch < 0)
+            {
+                h = 24 + (h - ch);
+                d--;
+                if (d == 0) 
+                {
+                    d = 30;
+                }
+            }
+            else
+            {
+                h = h - ch;
+            }
+            String reminderDateTime = $"{d}.{m}." + $"{year} {h}:{eventDateTime.Minute}";
+            return reminderDateTime;
+        }
+
+        public int getDays(int month)
+        {
+            int days = 30;
+            switch (month)
+            {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    days = 31;
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    days = 30;
+                    break;
+                case 2:
+                    days = 27;
+                    break;
+                
+            }
+            return days;
         }
     }
 }

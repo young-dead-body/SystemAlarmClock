@@ -63,9 +63,9 @@ namespace SystemAlarmClock
             this.button3.BackColor = System.Drawing.SystemColors.Highlight;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button3.Location = new System.Drawing.Point(231, 124);
+            this.button3.Location = new System.Drawing.Point(212, 124);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(130, 80);
+            this.button3.Size = new System.Drawing.Size(151, 80);
             this.button3.TabIndex = 8;
             this.button3.Text = "Отложить напоминание на 10 минут";
             this.button3.UseVisualStyleBackColor = false;
