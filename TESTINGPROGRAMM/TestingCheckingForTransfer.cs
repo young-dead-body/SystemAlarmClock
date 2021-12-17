@@ -113,4 +113,23 @@ namespace TESTINGPROGRAMM
 
         }
     }
+
+    //[TestClass]
+    //public class TestingMessageCustom
+    //{
+
+    //    [TestMethod]
+    //    public void TestMethod1()
+    //    {
+    //        MessageCustom mC = new MessageCustom("День рождения у Поли",
+    //                                                     "30.12.2009 23:22",
+    //                                                     false);
+    //        mC.Show();
+    //        Assert.AreEqual(mC.Text, "Напонимание о событии");
+
+    //    }
+    //}
+
+
+
 }

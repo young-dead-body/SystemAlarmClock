@@ -111,11 +111,10 @@ namespace SystemAlarmClock
             this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel2.Location = new System.Drawing.Point(0, 243);
+            this.panel2.Location = new System.Drawing.Point(0, 163);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(426, 137);
             this.panel2.TabIndex = 1;
-            this.panel2.Visible = false;
             // 
             // label4
             // 
@@ -181,12 +180,14 @@ namespace SystemAlarmClock
             "30"});
             this.comboBox2.Location = new System.Drawing.Point(91, 101);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 25);
+            this.comboBox2.Size = new System.Drawing.Size(121, 24);
             this.comboBox2.TabIndex = 1;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "1",
@@ -214,7 +215,7 @@ namespace SystemAlarmClock
             "23"});
             this.comboBox1.Location = new System.Drawing.Point(91, 61);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 25);
+            this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 

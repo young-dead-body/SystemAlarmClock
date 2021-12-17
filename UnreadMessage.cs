@@ -23,7 +23,7 @@ namespace SystemAlarmClock
 			InitializeComponent();
 			foreach (var str_col in unreadMessage)
             {
-                listBox1.Items.Add(str_col.ToString()); // ТУТ ОШИБКА(((
+                listBox1.Items.Add(str_col.ToString());
             }
         }
 
