@@ -12,6 +12,9 @@ namespace SystemAlarmClock
 {
     public partial class MessageCustom : Form
     {
+        /// <summary>
+        /// Конструктор класса MessageCustom (он не нужен, но пусть будет) 
+        /// </summary>
         public MessageCustom()
         {
             InitializeComponent();
