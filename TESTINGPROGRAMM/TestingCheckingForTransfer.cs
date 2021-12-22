@@ -7,6 +7,9 @@ namespace TESTINGPROGRAMM
     [TestClass]
     public class TestingCheckingForTransfer
     {
+        /// <summary>
+        /// Проверка переноса на 10 мин.
+        /// </summary>
         [TestMethod]
         public void TestMethod1()
         {
@@ -16,6 +19,9 @@ namespace TESTINGPROGRAMM
                                                             "10.10.2010 14:20:10"));
         }
 
+        /// <summary>
+        /// Проверка переноса на 10 мин.
+        /// </summary>
         [TestMethod]
         public void TestMethod2()
         {
@@ -43,6 +49,9 @@ namespace TESTINGPROGRAMM
     [TestClass]
     public class TestingCalculatingReminderTime
     {
+        /// <summary>
+        /// проверка на вычисление времени напоминания
+        /// </summary>
         [TestMethod]
         public void TestMethod1()
         {
@@ -53,6 +62,9 @@ namespace TESTINGPROGRAMM
             
         }
 
+        /// <summary>
+        /// проверка на вычисление времени напоминания
+        /// </summary>
         [TestMethod]
         public void TestMethod2()
         {
@@ -63,6 +75,9 @@ namespace TESTINGPROGRAMM
 
         }
 
+        /// <summary>
+        /// проверка на вычисление времени напоминания
+        /// </summary>
         [TestMethod]
         public void TestMethod3()
         {
@@ -73,6 +88,9 @@ namespace TESTINGPROGRAMM
 
         }
 
+        /// <summary>
+        /// проверка на вычисление времени напоминания
+        /// </summary>
         [TestMethod]
         public void TestMethod4()
         {
@@ -83,6 +101,9 @@ namespace TESTINGPROGRAMM
 
         }
 
+        /// <summary>
+        /// проверка на вычисление времени напоминания
+        /// </summary>
         [TestMethod]
         public void TestMethod5()
         {
@@ -93,6 +114,9 @@ namespace TESTINGPROGRAMM
 
         }
 
+        /// <summary>
+        /// проверка на вычисление времени напоминания
+        /// </summary>
         [TestMethod]
         public void TestMethod6()
         {
@@ -103,6 +127,9 @@ namespace TESTINGPROGRAMM
 
         }
 
+        /// <summary>
+        /// проверка на вычисление времени напоминания
+        /// </summary>
         [TestMethod]
         public void TestMethod7()
         {
