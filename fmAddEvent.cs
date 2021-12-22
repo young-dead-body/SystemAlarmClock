@@ -91,6 +91,13 @@ namespace SystemAlarmClock
             this.Height = 380;
         }
 
+        /// <summary>
+        /// Рассчет времени напоминания
+        /// </summary>
+        /// <param name="date1"></param>
+        /// <param name="day"></param>
+        /// <param name="hour"></param>
+        /// <returns></returns>
         public string countingReminderTime (String date1, int day, int hour)
         {
             DateTime eventDateTime = DateTime.Parse(date1);
@@ -142,6 +149,11 @@ namespace SystemAlarmClock
             return reminderDateTime;
         }
 
+        /// <summary>
+        /// супер костыль для вычисления количества дней в месяце
+        /// </summary>
+        /// <param name="month"></param>
+        /// <returns></returns>
         public int getDays(int month)
         {
             int days = 30;

@@ -19,7 +19,7 @@ namespace SystemAlarmClock
 		String str1 = ""; // строка для хранения данных о времени события
 		string FileName = "DB.txt"; // наименование файла с базой данных
 		int a = -1; // номер строки на которую нажал пользователь 
-		int countMes = 0;
+		int countMes = 0; //количество сообщений в списке непрочитанных
 
 		ArrayList unreadMessages = new ArrayList();
 
@@ -206,6 +206,11 @@ namespace SystemAlarmClock
             }
         }
 
+		/// <summary>
+		/// перезапись напоминания
+		/// </summary>
+		/// <param name="indexRewriteReminder"></param>
+		/// <param name="rem"></param>
 		public void rewriteReminder(int indexRewriteReminder, String rem) 
 		{
 			listBox1.Items[indexRewriteReminder] = rem;
@@ -277,6 +282,7 @@ namespace SystemAlarmClock
 			dE.Reminder = Convert.ToString(listBox1.Items[2 + i * 3]);
 			dE.Show();
 		}
+
 
 		public void deleteInMes(int count) 
 		{
@@ -366,6 +372,10 @@ namespace SystemAlarmClock
 			}
 		}
 
+		/// <summary>
+		/// ЕСЛИ СОБЫТИЕ БЫЛО УДАЛЕНО, УДАЛИТЬ ВСЕ НАПОМИНАНИЯ О НЁМ!!!
+		/// </summary>
+		/// <param name="aL"></param>
 		public void passingUnreadMessagesForDelete(ArrayList aL) //готово 
 		{
 			String name = aL[0].ToString(); // название события
@@ -426,6 +436,9 @@ namespace SystemAlarmClock
 			rewriteBDEvent(FileName);
 		}
 
+		/// <summary>
+		/// Запись напоминания в непрочитанные сообщения
+		/// </summary>
 		MessageCustom messageCustom;
 		public void addUnreadMessage(String str) 
 		{
@@ -448,8 +461,12 @@ namespace SystemAlarmClock
 			}
 		}
 
-		UnreadMessage unMes;
 
+
+		/// <summary>
+		/// открытие формы непрочитанных сообщений
+		/// </summary>
+		UnreadMessage unMes;
 		public void openWindowMessage() 
         {
 			if (unMes == null)
@@ -461,6 +478,11 @@ namespace SystemAlarmClock
 			unMes.Show();
 		}
 
+		/// <summary>
+		/// открытие формы непрочитанных сообщений
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
 			openWindowMessage();
@@ -471,6 +493,11 @@ namespace SystemAlarmClock
 			
 		}
 
+		/// <summary>
+		/// запись в список непрочитанных сообщений
+		/// </summary>
+		/// <param name="i"></param>
+		/// <returns></returns>
 		private bool passingUnreadMessages(int i) //готово 
 		{
 			String name = Convert.ToString(listBox1.Items[0 + i * 3]); // название события
