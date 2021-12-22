@@ -13,12 +13,18 @@ namespace SystemAlarmClock
 {
     public partial class UnreadMessage : Form
     {
+		/// <summary>
+		////конструктор класса UnreadMessage
+		/// </summary>
         public UnreadMessage()
         {
             InitializeComponent();
         }
 
-        public UnreadMessage(ArrayList unreadMessage)
+		/// <summary>
+		////конструктор с параметрами класса UnreadMessage
+		/// </summary>
+		public UnreadMessage(ArrayList unreadMessage)
         {
 			InitializeComponent();
 			foreach (var str_col in unreadMessage)
@@ -28,6 +34,12 @@ namespace SystemAlarmClock
         }
 
 		int a = -1;
+
+		/// <summary>
+		/// процедура реализующая нажатие на непрочитанное сообщение 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         private void listBox1_MouseClick(object sender, MouseEventArgs e)
         {
 			if (a != -1)
@@ -81,6 +93,9 @@ namespace SystemAlarmClock
 		
 		}
 
+		/// <summary>
+		/// процедура удаления сообщения из списка
+		/// </summary>
 		private void delete() 
 		{
 			int num;
