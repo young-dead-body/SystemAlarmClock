@@ -46,16 +46,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmAddEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmAddEvent.Designer.cs">
+      <DependentUpon>fmAddEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmRewriteEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmRewriteEvent.Designer.cs">
+      <DependentUpon>fmRewriteEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MessageCustom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageCustom.Designer.cs">
+      <DependentUpon>MessageCustom.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="UnreadMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UnreadMessage.Designer.cs">
+      <DependentUpon>UnreadMessage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmAddEvent.resx">
+      <DependentUpon>fmAddEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmRewriteEvent.resx">
+      <DependentUpon>fmRewriteEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageCustom.resx">
+      <DependentUpon>MessageCustom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -65,7 +98,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UnreadMessage.resx">
+      <DependentUpon>UnreadMessage.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -78,6 +115,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resourses\message.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resourses\1904660-email-envelope-letter-mail-message-post-send_122510.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
